@@ -1,14 +1,18 @@
 import entities.Employee;
 import java.util.Locale;
 import java.util.Scanner;
+import services.PensionService;
 import services.SalaryService;
+import services.TaxService;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        SalaryService salary = new SalaryService();
+        TaxService taxService = new TaxService();
+        PensionService pensionService = new PensionService();
+        SalaryService salary = new SalaryService(taxService, pensionService);
 
         String name;
         double grossSalary, netSalary;
