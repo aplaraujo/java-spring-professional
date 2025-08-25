@@ -1,6 +1,7 @@
 import entities.Employee;
 import java.util.Locale;
 import java.util.Scanner;
+import services.BrazilTaxService;
 import services.PensionService;
 import services.SalaryService;
 import services.TaxService;
@@ -10,7 +11,7 @@ public class App {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        TaxService taxService = new TaxService();
+        TaxService taxService = new BrazilTaxService();
         PensionService pensionService = new PensionService();
         SalaryService salary = new SalaryService(taxService, pensionService);
 
