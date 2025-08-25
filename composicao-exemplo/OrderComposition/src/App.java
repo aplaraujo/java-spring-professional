@@ -1,6 +1,9 @@
 
+import entities.Order;
 import java.util.Locale;
 import java.util.Scanner;
+import services.OrderService;
+import services.ShippingService;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -14,15 +17,11 @@ public class App {
         value = sc.nextDouble();
         discountPercent = sc.nextDouble();
 
-        valueWithDiscount = value - (value * discountPercent/100);
+        Order order = new Order(code, value, discountPercent);
+        OrderService orderService = new OrderService(order);
+        ShippingService shippingService = new ShippingService(order, orderService);
 
-        if (valueWithDiscount < 100) {
-            total = valueWithDiscount + 20.00;
-        } else if(valueWithDiscount >= 100 && valueWithDiscount < 200) {
-            total = valueWithDiscount + 12.00;
-        } else {
-            total = valueWithDiscount;
-        }
+        total = shippingService.shipment(order);
 
         System.out.println();
         System.out.println("Pedido codigo " + code);
