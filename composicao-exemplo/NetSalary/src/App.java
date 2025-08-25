@@ -1,10 +1,14 @@
+import entities.Employee;
 import java.util.Locale;
 import java.util.Scanner;
+import services.SalaryService;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
+
+        SalaryService salary = new SalaryService();
 
         String name;
         double grossSalary, netSalary;
@@ -13,11 +17,12 @@ public class App {
         name = sc.nextLine();
         System.out.print("Salario bruto: ");
         grossSalary = sc.nextDouble();
+        Employee emp = new Employee(name, grossSalary);
 
-        netSalary = grossSalary - (grossSalary * 0.30);
+        netSalary = salary.netSalary(emp);
 
-        System.out.println();
-        System.out.println("Salario liquido: " + String.format("%.2f", netSalary));
+        System.out.printf("Salario liquido = %.2f", netSalary);
+        
         sc.close();
     }
 }
