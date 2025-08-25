@@ -11,7 +11,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         int code;
-        double value, discountPercent, valueWithDiscount, total;
+        double value, discountPercent, total;
 
         code = sc.nextInt();
         value = sc.nextDouble();
